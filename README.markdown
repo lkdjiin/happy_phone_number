@@ -1,4 +1,4 @@
-Happy Phone Number
+Happy Phone Number  [![Build Status](https://travis-ci.org/lkdjiin/happy_phone_number.png)](https://travis-ci.org/lkdjiin/happy_phone_number)
 ================
 
 Description
