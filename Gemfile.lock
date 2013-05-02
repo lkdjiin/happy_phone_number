@@ -107,5 +107,6 @@ PLATFORMS
 DEPENDENCIES
   happy_phone_number!
   jquery-rails
+  rake
   rspec-rails
   sqlite3
