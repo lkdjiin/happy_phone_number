@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 describe HappyPhoneNumber do
+  before { @contact = Contact.new(phone: "0123456789", phone2: "1111111111") }
 
-  describe "#happy_phone" do
-    before { @contact = Contact.new phone: "0123456789" }
+  describe "#happy_phone" do# {{{
 
     describe "with no args" do
       it "should return the phone number unformatted" do
@@ -36,12 +36,9 @@ describe HappyPhoneNumber do
         @contact.happy_phone(:FR).should == "01 23 45 67 89"
       end
     end
-  end
+  end# }}}
 
-  describe "#happy_phone2" do
-    before do
-      @contact = Contact.new(phone: "0123456789", phone2: "1111111111")
-    end
+  describe "#happy_phone2" do# {{{
 
     describe "with :fr as 1st arg" do
       it "should format as a french phone number" do
@@ -54,6 +51,10 @@ describe HappyPhoneNumber do
         end
       end
     end
+  end# }}}
 
+  describe "#respond_to?" do
+    specify { @contact.should respond_to(:happy_phone) }
+    specify { @contact.should respond_to(:happy_phone2) }
   end
 end

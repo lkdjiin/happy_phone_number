@@ -19,6 +19,16 @@ module HappyPhoneNumber
     end
   end
 
+  def respond_to?(meth, include_private = false)
+    if meth.to_s =~ /^happy_.*$/
+      true
+    else
+      super
+    end
+  end
+
+  private
+
   def run_happy(meth, *args, &block)
     type = args[0]
     separator = args[1] || ' '
