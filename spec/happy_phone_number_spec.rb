@@ -7,19 +7,19 @@ describe HappyPhoneNumber do
 
   describe "#happy_phone" do# {{{
 
-    describe "with no args" do
+    describe "with no args" do# {{{
       it "should return the phone number unformatted" do
         @contact.happy_phone.should == "0123456789"
       end
-    end
+    end# }}}
 
-    describe "with unknown locale" do
+    describe "with unknown locale" do# {{{
       it "should return the phone number unformatted" do
         @contact.happy_phone(:zz).should == "0123456789"
       end
-    end
+    end# }}}
 
-    describe "with :fr as 1st arg" do
+    describe "with :fr as 1st arg" do# {{{
       it "should format as a french phone number" do
         @contact.happy_phone(:fr).should == "01 23 45 67 89"
       end
@@ -29,13 +29,20 @@ describe HappyPhoneNumber do
           @contact.happy_phone(:fr, '.').should == "01.23.45.67.89"
         end
       end
-    end
+    end# }}}
 
-    describe "with :FR as 1st arg" do
+    describe "with :FR as 1st arg" do# {{{
       it "should format as a french phone number" do
         @contact.happy_phone(:FR).should == "01 23 45 67 89"
       end
+    end# }}}
+
+    describe "with :international as 1st arg" do
+      specify do
+        @contact.happy_phone(:international).should == "+33 1 23 45 67 89"
+      end
     end
+
   end# }}}
 
   describe "#happy_phone2" do# {{{
@@ -53,8 +60,9 @@ describe HappyPhoneNumber do
     end
   end# }}}
 
-  describe "#respond_to?" do
+  describe "#respond_to?" do# {{{
     specify { @contact.should respond_to(:happy_phone) }
     specify { @contact.should respond_to(:happy_phone2) }
-  end
+  end# }}}
+
 end

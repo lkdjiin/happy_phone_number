@@ -34,6 +34,8 @@ module HappyPhoneNumber
     separator = args[1] || ' '
     if (type == :fr) || (type == :FR)
       send(meth.to_sym).unpack('A2A2A2A2A2').join(separator)
+    elsif type == :international
+      "+33#{send(meth.to_sym)[1, 9]}".unpack('A3A1A2A2A2A2').join(separator)
     else
       send(meth.to_sym)
     end
