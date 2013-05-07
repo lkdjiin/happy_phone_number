@@ -3,16 +3,19 @@ Happy Phone Number [![Build Status](https://travis-ci.org/lkdjiin/happy_phone_nu
 
 Description
 ----------------------
-A rails plugin to happily format phone numbers.
 
-**Early stage. Work in progress.**
+*Happy Phone Number* provides easy methods to format phone
+numbers from your Rails models. Virtually any country specific
+format or convention could be supported, including national and international
+format. For the not (yet) supported countries, a general method
+using a simple mask is also provided.
 
 Overview
 -----------------------
 
 ### Prerequisite
 
-  * Phone number **must be save** with digits only. So, without spaces, hyphen,
+  * Phone number **must be save** with digits only. So, without spaces, hyphens,
     or dots. Just digits.
 
 ### Demonstration
@@ -78,7 +81,7 @@ And if *Happy Phone Number* don't know your country, you could use a
 ### Caveats
 
 *Happy Phone Number* know only french and belgian phone numbers for the time
-being. You could contribute to add formatting for your country. It's not so
+being. You could contribute to add formatter for your country. It's not so
 hard, let me know if you need some help.
 
 *Mask formatting* doesn't work for international phone number format.
@@ -112,6 +115,28 @@ Dependencies
 
 ruby >= 1.9.2
 rails >= 3.2
+
+Contributing
+-------------------------
+
+*I don't know much about format and convention for every possible country.
+Feel free to send me documentation for the phone number formatting and
+convention for your country. Or contribute to the code by adding any
+missing formatter.*
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+### There is many other ways to contibute to FIXME
+
+1. Report any bug
+2. Give me ideas
+3. Correct my poor english syntax
+4. Blog about *Happy Phone Number*
+5. Tell *Happy Phone Number* to your friends and colleagues
 
 License
 --------------------------

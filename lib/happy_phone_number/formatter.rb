@@ -27,6 +27,7 @@ module HappyPhoneNumber
       if @country_or_mask.class == String
         return Mask.new(@phone, @country_or_mask).format
       end
+      # TODO Find a way to dynamically find the class of the country formatter.
       case @country_or_mask
       when :fr, :FR then FrFormat.new(@phone, @type, @separator).format
       when :be, :BE then BeFormat.new(@phone, @type, @separator).format
