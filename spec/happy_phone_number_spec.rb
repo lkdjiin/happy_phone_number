@@ -12,7 +12,25 @@ describe HappyPhoneNumber do
     specify { @contact.should respond_to(:happy_inter_phone2) }
   end# }}}
 
-  context "with french phone number" do
+  context "with free format" do# {{{
+    before { @contact = Contact.new(phone: "0123456789") }
+
+    specify { @contact.happy_phone("#### ### ###").should == "0123 456 789" }
+    specify { @contact.happy_phone("##-##-###-###").should == "01-23-456-789" }
+    specify { @contact.happy_phone("#####.#####").should == "01234.56789" }
+    specify { @contact.happy_phone("#### ###-###").should == "0123 456-789" }
+
+    describe "with a mask too long" do
+      specify { @contact.happy_phone("#### ### ####").should == "0123 456 789" }
+    end
+
+    describe "with a mask too short" do
+      specify { @contact.happy_phone("##").should == "0123456789" }
+    end
+
+  end# }}}
+
+  context "with french phone number" do# {{{
     before { @contact = Contact.new(phone: "0123456789", phone2: "1111111111") }
 
     describe "#happy_*" do# {{{
@@ -49,7 +67,7 @@ describe HappyPhoneNumber do
     end# }}}
 
     describe "#happy_inter_*" do# {{{
-      
+
       describe "with :fr as 1st arg" do
         specify do
           @contact.happy_inter_phone(:fr).should == "+33 1 23 45 67 89"
@@ -91,9 +109,9 @@ describe HappyPhoneNumber do
     end
   end# }}}
 
-  end
+  end# }}}
 
-  context "with belgium phone number" do
+  context "with belgium phone number" do# {{{
     before { @contact = Contact.new(phone: "031112233", phone2: "063112233") }
 
     describe "with :be as 1st arg" do# {{{
@@ -137,7 +155,7 @@ describe HappyPhoneNumber do
       end
     end# }}}
 
-    describe "#happy_inter_*" do
+    describe "#happy_inter_*" do# {{{
       specify { @contact.happy_inter_phone(:be).should == "+32 3 111 22 33" }
       specify { @contact.happy_inter_phone2(:be).should == "+32 63 11 22 33" }
 
@@ -149,8 +167,8 @@ describe HappyPhoneNumber do
           @contact.happy_inter_phone2(:be, '.').should == "+32.63.11.22.33"
         end
       end
-    end
+    end# }}}
 
-  end
+  end# }}}
 
 end
