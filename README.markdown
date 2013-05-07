@@ -10,8 +10,14 @@ A rails plugin to happily format phone numbers.
 Overview
 -----------------------
 
-Let's say you have a `Contact` model with a `phone` attribute. The phone number
-**must be save** without spaces, or hyphen, or dots...
+### Prerequisite
+
+  * Phone number **must be save** with digits only. So, without spaces, hyphen,
+    or dots. Just digits.
+
+### Demonstration
+
+Let's say you have a `Contact` model with a `phone` attribute.
 
 To display the phone number you could do this:
 
@@ -30,7 +36,7 @@ Or in uppercase if you prefer:
 
 If you want an international format:
 
-    <%= @contact.happy_phone(:international) %>
+    <%= @contact.happy_inter_phone(:fr) %>
     #=> "+33 1 23 45 67 89"
 
 What if you want dots as separator?
@@ -49,6 +55,33 @@ and `mobile`, or maybe `portable`?
     #=> "33 33 33 33 33"
     ...
 
+Now, imagine you live in Belgium, where phone numbers could have 2 formats:
+
+    <%= @contact.happy_phone(:be) %>
+    #=> "03 111 22 33"
+
+    <%= @contact.happy_phone2(:be) %>
+    #=> "063 11 22 33"
+
+    <%= @contact.happy_inter_phone(:be) %>
+    #=> "+32 3 111 22 33"
+
+    <%= @contact.happy_inter_phone2(:be) %>
+    #=> "+32 63 11 22 33"
+
+And if *Happy Phone Number* don't know your country, you could use a
+**mask formatting**:
+
+    <%= @contact.happy_phone("#### ###-###") %>
+    #=> "0123 456-789"
+
+### Caveats
+
+*Happy Phone Number* know only french and belgian phone numbers for the time
+being. You could contribute to add formatting for your country. It's not so
+hard, let me know if you need some help.
+
+*Mask formatting* doesn't work for international phone number format.
 
 Install
 -------------------------
@@ -72,6 +105,7 @@ Now, in your views, you can use:
 
     happy_phone(:fr)
     happy_fax(:fr)
+    ...
 
 Dependencies
 --------------------------
@@ -89,4 +123,4 @@ Questions and/or Comments
 --------------------------
 
 Feel free to email [Xavier Nayrac](mailto:xavier.nayrac@gmail.com)
-with any questions.
+with any questions, or contact me on [twitter](https://twitter.com/lkdjiin).
