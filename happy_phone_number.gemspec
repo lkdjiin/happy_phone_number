@@ -11,7 +11,13 @@ Gem::Specification.new do |s|
   s.email       = ["xavier.nayrac@gmail.com"]
   s.homepage    = "https://github.com/lkdjiin/happy_phone_number"
   s.summary     = "Rails plugin to format phone number."
-  s.description = "Rails plugin to format phone number."
+  s.description = <<-DESC
+Happy Phone Number provides easy methods to format phone
+numbers from your Rails models. Virtually any country specific
+format could be supported, including national and international
+format. For the not (yet) supported countries, a general method
+using a simple mask is also provided.
+  DESC
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
 
