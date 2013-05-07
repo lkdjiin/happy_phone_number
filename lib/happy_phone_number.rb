@@ -4,6 +4,30 @@ require 'happy_phone_number/base_format'
 require 'happy_phone_number/be_format'
 require 'happy_phone_number/fr_format'
 
+# Public: Happy Phone Number provides easy methods to format phone
+# numbers from your Rails models. Virtually any country specific
+# format could be supported, including national and international
+# format. For the not (yet) supported countries, a general method
+# using a simple mask is also provided.
+#
+# Examples
+#
+#   class Contact < ActiveRecord::Base
+#     attr_accessible :email, :name, :phone, :fax
+#     happy_phone_number
+#   end
+#
+#   <%= @contact.happy_phone(:fr) %>
+#   # => "01 23 45 67 89"
+#
+#   <%= @contact.happy_inter_phone(:fr) %>
+#   # => "+33 1 23 45 67 89"
+#
+#   <%= @contact.happy_phone(:be) %>
+#   # => "03 111 22 33"
+#
+#   <%= @contact.happy_phone("#### ###-###") %>
+#   # => "0123 456-789"
 module HappyPhoneNumber
   extend ActiveSupport::Concern
 
@@ -15,6 +39,22 @@ module HappyPhoneNumber
     end
   end
 
+  # Public: Format a phone number from a model.
+  #
+  # args[0] - Either a Symbol country or a String formatting mask.
+  #           A country symbol must be in ISO 3166-1-alpha-2 format,
+  #           both lower and upper case are valids.
+  # block   - Not used.
+  #
+  # Signature
+  #
+  #   happy_<field>(country_or_mask, separator)
+  #   happy_inter_<field>(country_or_mask, separator)
+  #
+  # field - A field name of the model that holds a phone number as a
+  #         string.
+  #
+  # Returns the String formatted phone number.
   def method_missing(meth, *args, &block)
     if meth.to_s =~ /^happy_inter_(.+)$/
       happy_format(:international, $1, *args)
@@ -25,6 +65,7 @@ module HappyPhoneNumber
     end
   end
 
+  # Public: Make the happy_* methods respond to respond_to?.
   def respond_to?(meth, include_private = false)
     if meth.to_s =~ /^happy_.*$/
       true
@@ -35,9 +76,17 @@ module HappyPhoneNumber
 
   private
 
-    def happy_format(type, meth, *args)
-      Formatter.new(send(meth.to_sym), type, args[0], args[1]).format
-    end
+  # Launch the formatting process.
+  #
+  # type - Either :national or :international.
+  # meth - The String field from the model.
+  # args - Argument(s) passed to the formatting method, like a country,
+  #        a mask string, the separator.
+  #
+  # Returns the String formatted phone number.
+  def happy_format(type, meth, *args)
+    Formatter.new(send(meth.to_sym), type, args[0], args[1]).format
+  end
 
 end
 
