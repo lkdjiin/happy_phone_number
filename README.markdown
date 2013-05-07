@@ -113,8 +113,8 @@ Now, in your views, you can use:
 Dependencies
 --------------------------
 
-ruby >= 1.9.2
-rails >= 3.2
+  * ruby >= 1.9.2
+  * rails >= 3.2
 
 Contributing
 -------------------------
@@ -136,12 +136,11 @@ Name the file as follow:
 
     aa_format.rb
 
-when "aa" is the ISO code of the country.
-See [ISO] [1].
+where "aa" is the ISO code of the country.
+See [ISO country codes] [1].
 
 Put this file in the lib/ folder. Then follow the structure of
 an existed formatter (fr_format.rb is a good starting point).
-
 Feel free to ask for help if you have any troubles.
 
 
@@ -165,4 +164,4 @@ Questions and/or Comments
 Feel free to email [Xavier Nayrac](mailto:xavier.nayrac@gmail.com)
 with any questions, or contact me on [twitter](https://twitter.com/lkdjiin).
 
-[1]: http://en.wikipedia.org/wiki/ISO_3166-1 "ISO country codes"
+[1]: http://en.wikipedia.org/wiki/ISO_3166-1 "ISO country codes on wikipedia"
