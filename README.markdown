@@ -130,6 +130,21 @@ missing formatter.*
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+### How to add a formatter for your country
+
+Name the file as follow:
+
+    aa_format.rb
+
+when "aa" is the ISO code of the country.
+See [ISO] [1].
+
+Put this file in the lib/ folder. Then follow the structure of
+an existed formatter (fr_format.rb is a good starting point).
+
+Feel free to ask for help if you have any troubles.
+
+
 ### There is many other ways to contibute to FIXME
 
 1. Report any bug
@@ -149,3 +164,5 @@ Questions and/or Comments
 
 Feel free to email [Xavier Nayrac](mailto:xavier.nayrac@gmail.com)
 with any questions, or contact me on [twitter](https://twitter.com/lkdjiin).
+
+[1]: http://en.wikipedia.org/wiki/ISO_3166-1 "ISO country codes"
