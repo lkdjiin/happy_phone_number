@@ -25,17 +25,57 @@ module HappyPhoneNumber
     # Returns the String formatted phone number.
     def format
       if @country_or_mask.class == String
-        return Mask.new(@phone, @country_or_mask).format
-      end
-      # TODO Find a way to dynamically find the class of the country formatter.
-      case @country_or_mask
-      when :fr, :FR then FrFormat.new(@phone, @type, @separator).format
-      when :be, :BE then BeFormat.new(@phone, @type, @separator).format
+        use_mask
       else
-        @phone
+        use_formatter
       end
     end
 
+    private
+
+    # Format phone using a mask.
+    #
+    # Returns the String formatted phone number.
+    def use_mask
+      Mask.new(@phone, @country_or_mask).format
+    end
+
+    # Format phone using a country formatter.
+    #
+    # Returns the String formatted phone number.
+    def use_formatter
+      begin
+        require "happy_phone_number/#{formatter_filename}"
+        HappyPhoneNumber.const_get(formatter_classname).new(
+          @phone, @type, @separator).format
+      rescue LoadError
+        return @phone
+      end
+    end
+
+    # Get the formatter classname.
+    #
+    # Examples
+    #
+    #   @country_or_mask = :fr
+    #   formatter_classname # => "FrFormat"
+    #
+    # Returns the String formatter classname.
+    def formatter_classname
+      "#{@country_or_mask.to_s.capitalize}Format"
+    end
+
+    # Get the formatter filename.
+    #
+    # Examples
+    #
+    #   @country_or_mask = :fr
+    #   formatter_classname # => "fr_format"
+    #
+    # Returns the String formatter filename.
+    def formatter_filename
+      "#{@country_or_mask.to_s.downcase}_format"
+    end
   end
 end
 

@@ -1,8 +1,6 @@
 require 'happy_phone_number/formatter'
 require 'happy_phone_number/mask'
 require 'happy_phone_number/base_format'
-require 'happy_phone_number/be_format'
-require 'happy_phone_number/fr_format'
 
 # Public: Happy Phone Number provides easy methods to format phone
 # numbers from your Rails models. Virtually any country specific
