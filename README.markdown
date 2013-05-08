@@ -80,10 +80,6 @@ And if *Happy Phone Number* don't know your country, you could use a
 
 ### Caveats
 
-*Happy Phone Number* only know french, belgian and danish phone numbers for the
-time being. You could contribute to add formatter for your country. It's not so
-hard, let me know if you need some help.
-
 *Mask formatting* doesn't work for international phone number format.
 
 Install
@@ -109,6 +105,32 @@ Now, in your views, you can use:
     happy_phone(:fr)
     happy_fax(:fr)
     ...
+
+Supported Countries
+--------------------------
+
+<table>
+<tr>
+  <th>Name</th>
+  <th>Symbol</th>
+</tr>
+<tr>
+  <td>Belgium</td>
+  <td>:be</td>
+</tr>
+<tr>
+  <td>Denmark</td>
+  <td>:dk</td>
+</tr>
+<tr>
+  <td>France</td>
+  <td>:fr</td>
+</tr>
+<tr>
+  <td>Iceland</td>
+  <td>:is</td>
+</tr>
+</table>
 
 Dependencies
 --------------------------
