@@ -14,18 +14,25 @@ module HappyPhoneNumber
         if @type == :national
           make_happy '2322'
         else
-          internationalize_with '32'
+          internationalize
           make_happy '31322'
         end
       else
         if @type == :national
           make_happy '3222'
         else
-          internationalize_with '32'
+          internationalize
           make_happy '32222'
         end
       end
     end
+
+    private
+
+    def internationalize
+      internationalize_with('32') { @phone.slice!(0) }
+    end
+
   end
 end
 

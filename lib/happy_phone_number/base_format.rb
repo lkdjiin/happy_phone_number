@@ -18,7 +18,7 @@ module HappyPhoneNumber
 
     private
 
-    # Format the phone number using specified grouping.
+    # Internal: Format the phone number using specified grouping.
     #
     # groups - A String set of digits.
     #
@@ -39,20 +39,27 @@ module HappyPhoneNumber
       @phone.unpack(unpack_string).join(@separator)
     end
 
-    # Internationalize a phone number with a given prefix.
+    # Internal: Internationalize a phone number with a given prefix.
     #
     # prefix - A String.
+    # block  - Optional, a block to call before we add the prefix.
     #
     # Examples
     #
     #   puts @phone
+    #   # => "12345678"
+    #   internationalize_with("45")
+    #   # => "+4512345678"
+    #
+    #   puts @phone
     #   # => "0123456789"
-    #   internationalize_with "33"
+    #   internationalize_with("33") { @phone.slice!(0) }
     #   # => "+33123456789"
     #
     # Returns nothing.
-    def internationalize_with prefix
-      @phone = "+#{prefix}#{@phone[1, @phone.length - 1]}"
+    def internationalize_with prefix, &block
+      block.call if block
+      @phone = "+#{prefix}#{@phone}"
     end
 
   end
