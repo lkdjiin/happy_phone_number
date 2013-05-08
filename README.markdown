@@ -80,8 +80,8 @@ And if *Happy Phone Number* don't know your country, you could use a
 
 ### Caveats
 
-*Happy Phone Number* know only french and belgian phone numbers for the time
-being. You could contribute to add formatter for your country. It's not so
+*Happy Phone Number* only know french, belgian and danish phone numbers for the
+time being. You could contribute to add formatter for your country. It's not so
 hard, let me know if you need some help.
 
 *Mask formatting* doesn't work for international phone number format.
@@ -139,8 +139,13 @@ Name the file as follow:
 where "aa" is the ISO code of the country.
 See [ISO country codes] [1].
 
-Put this file in the lib/ folder. Then follow the structure of
-an existed formatter (fr_format.rb is a good starting point).
+Put this file in the lib/happy_phone_number/ folder. Then follow the structure of
+an existed formatter:
+
+  * fr_format.rb is a good starting point
+  * dk_format.rb is the simplest one
+  * be_format.rb is a little more complex
+
 Feel free to ask for help if you have any troubles.
 
 
