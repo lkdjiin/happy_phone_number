@@ -10,6 +10,8 @@ describe HappyPhoneNumber do
     specify { @contact.should respond_to(:happy_inter_phone) }
     specify { @contact.should respond_to(:happy_phone2) }
     specify { @contact.should respond_to(:happy_inter_phone2) }
+    specify { @contact.should respond_to(:happy_mask_phone) }
+    specify { @contact.should respond_to(:happy_mask_phone2) }
   end
 
 end

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe "format french phone number" do# {{{
+describe "format french phone number" do
   before { @contact = Contact.new(phone: "0123456789", phone2: "1111111111") }
 
   describe "#happy_*" do# {{{
@@ -33,6 +33,12 @@ describe "format french phone number" do# {{{
     describe "with :FR as 1st arg" do# {{{
       it "should format as a french phone number" do
         @contact.happy_phone(:FR).should == "01 23 45 67 89"
+      end
+    end# }}}
+
+    describe "with 'fr' as 1st arg" do# {{{
+      it "should format as a french phone number" do
+        @contact.happy_phone('fr').should == "01 23 45 67 89"
       end
     end# }}}
 
@@ -81,4 +87,4 @@ describe "format french phone number" do# {{{
     end
   end# }}}
 
-end# }}}
+end

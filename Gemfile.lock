@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    happy_phone_number (0.0.2)
+    happy_phone_number (0.0.3)
       rails (~> 3.2.13)
 
 GEM

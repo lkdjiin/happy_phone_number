@@ -18,13 +18,16 @@ require 'happy_phone_number/base_format'
 #   <%= @contact.happy_phone(:fr) %>
 #   # => "01 23 45 67 89"
 #
+#   <%= @contact.happy_phone('fr') %>
+#   # => "01 23 45 67 89"
+#
 #   <%= @contact.happy_inter_phone(:fr) %>
 #   # => "+33 1 23 45 67 89"
 #
 #   <%= @contact.happy_phone(:be) %>
 #   # => "03 111 22 33"
 #
-#   <%= @contact.happy_phone("#### ###-###") %>
+#   <%= @contact.happy_mask_phone("#### ###-###") %>
 #   # => "0123 456-789"
 module HappyPhoneNumber
   extend ActiveSupport::Concern
@@ -39,23 +42,29 @@ module HappyPhoneNumber
 
   # Public: Format a phone number from a model.
   #
-  # args[0] - Either a Symbol country or a String formatting mask.
-  #           A country symbol must be in ISO 3166-1-alpha-2 format,
+  # args[0] - Either a Symbol|String country or a String formatting mask.
+  #           A country must be in ISO 3166-1-alpha-2 format,
   #           both lower and upper case are valids.
   # block   - Not used.
   #
   # Signature
   #
-  #   happy_<field>(country_or_mask, separator)
-  #   happy_inter_<field>(country_or_mask, separator)
+  #   happy_<field>(country, separator)
+  #   happy_inter_<field>(country, separator)
+  #   happy_mask_<field>(mask)
   #
-  # field - A field name of the model that holds a phone number as a
-  #         string.
+  # field     - A field name of the model that holds a phone number as a
+  #             string.
+  # country   - Symbol or String in ISO 3166-1-alpha-2 format.
+  # separator - A String used to separate groups of number.
+  # mask      - A String formatting mask.
   #
   # Returns the String formatted phone number.
   def method_missing(meth, *args, &block)
     if meth.to_s =~ /^happy_inter_(.+)$/
       happy_format(:international, $1, *args)
+    elsif meth.to_s =~ /^happy_mask_(.+)$/
+      happy_format(:mask, $1, *args)
     elsif meth.to_s =~ /^happy_(.+)$/
       happy_format(:national, $1, *args)
     else
@@ -76,7 +85,7 @@ module HappyPhoneNumber
 
   # Launch the formatting process.
   #
-  # type - Either :national or :international.
+  # type - Either :national, :international or :mask.
   # meth - The String field from the model.
   # args - Argument(s) passed to the formatting method, like a country,
   #        a mask string, the separator.

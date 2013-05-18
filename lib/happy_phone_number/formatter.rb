@@ -8,9 +8,9 @@ module HappyPhoneNumber
     # Internal: Initialize the formatter facade.
     #
     # phone           - A String phone number to format.
-    # type            - Either :national or :international.
-    # country_or_mask - If it's a country, must be a two-letters Symbol.
-    #                   If it's a String, it is considered as a mask.
+    # type            - :national | :international | :mask.
+    # country_or_mask - The country as Symbol or String in
+    #                   ISO 3166-1-alpha-2, or a String mask.
     # separator       - Optional, a String to separate groups of digits
     #                   the final result.
     def initialize phone, type, country_or_mask, separator
@@ -24,7 +24,7 @@ module HappyPhoneNumber
     #
     # Returns the String formatted phone number.
     def format
-      if @country_or_mask.class == String
+      if @type == :mask
         use_mask
       else
         use_formatter
