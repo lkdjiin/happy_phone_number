@@ -37,6 +37,11 @@ Or in uppercase if you prefer:
     <%= @contact.happy_phone(:FR) %>
     #=> "01 23 45 67 89"
 
+Or maybe with a string:
+
+    <%= @contact.happy_phone('fr') %>
+    #=> "01 23 45 67 89"
+
 If you want an international format:
 
     <%= @contact.happy_inter_phone(:fr) %>
@@ -75,19 +80,16 @@ Now, imagine you live in Belgium, where phone numbers could have 2 formats:
 And if *Happy Phone Number* don't know your country, you could use a
 **mask formatting**:
 
-    <%= @contact.happy_phone("#### ###-###") %>
+    <%= @contact.happy_mask_phone("#### ###-###") %>
     #=> "0123 456-789"
 
-### Caveats
-
-*Mask formatting* doesn't work for international phone number format.
 
 Install
 -------------------------
 
 Add this line in your Gemfile:
 
-    gem 'happy_phone_number', :git => 'git://github.com/lkdjiin/happy_phone_number.git'
+    gem 'happy_phone_number'
 
 
 Usage
