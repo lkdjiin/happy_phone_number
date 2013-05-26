@@ -1,4 +1,4 @@
-Happy Phone Number [![Build Status](https://travis-ci.org/lkdjiin/happy_phone_number.png)](https://travis-ci.org/lkdjiin/happy_phone_number)
+Happy Phone Number [![Build Status](https://travis-ci.org/lkdjiin/happy_phone_number.png)](https://travis-ci.org/lkdjiin/happy_phone_number) [![Gem Version](https://badge.fury.io/rb/happy_phone_number.png)](http://badge.fury.io/rb/happy_phone_number)
 ================
 
 Description
